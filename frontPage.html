@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Blockchain P2P network</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; background-color: #f8f8f8; }
+        header { background-color: #3b0d61; color: white; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; }
+        .logo img { height: 40px; }
+        .nav-icons { font-size: 20px; }
+        .hero { padding: 50px 20px; background: linear-gradient(to right, #3b0d61, #8a2be2); color: white; }
+        .btn1 {
+    background: transparent;
+    color: #ff9900;
+    padding: 12px 24px;
+    text-decoration: none;
+    border: 2px solid #ff9900;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn1 i {
+    margin-left: 8px;
+}
+
+.btn1:hover {
+    background: #ff9900;
+    color: white;
+}
+
+        .video iframe { max-width: 100%; }
+        .features { display: flex; flex-wrap: wrap; justify-content: center; padding: 20px; }
+        .feature { width: 300px; padding: 20px; background: white; margin: 10px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .download { background: linear-gradient(to right, #3b0d61, #8a2be2); color: white; padding: 40px 20px; }
+        .store-btn img { width: 150px; margin: 10px; }
+        footer { background: #3b0d61; color: white; padding: 20px; }
+        .footer-links a { color: white; margin: 0 10px; text-decoration: none; }
+     
+        /* Icons Styling */
+        .icons-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 22px;
+        }
+
+        .icons-container i {
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><img src="C:\Users\atesh\Downloads\logo1.png" alt="Pi Network Logo"></div>
+        </div>
+
+        <div class="icons-container">
+            <i class="fas fa-search"></i> <!-- Search Icon -->
+            <i class="fas fa-bars"></i> <!-- Menu (Hamburger) Icon -->
+        </div>
+    </header>
+    
+
+    <section class="hero">
+        <h1>The First Digital Currency You Can Mine on Your Phone</h1>
+        <p>Start mining Pi cryptocurrency today with our free, energy-light mobile app!</p>
+        <a href="C:\Users\atesh\Desktop\pi\secon.html" class="btn1">Activate P2P</a>
+    </section>
+    
+    
+
+    <section class="video" style="margin-bottom: -5px;">
+    <div class="video-container" onclick="playVideo()">
+        <img src="C:\Users\atesh\Downloads\nail.png" id="video-thumbnail" alt="Custom Thumbnail" 
+             style="width:100%; height:315px; cursor:pointer; object-fit:cover;">
+        <iframe id="video-frame" width="100%" height="315" src="" frameborder="0" allowfullscreen style="display:none;"></iframe>
+    </div>
+</section>
+
+
+<section class="promo" style="background-color:#6D3B8C; text-align:center; color:white; padding:40px 20px; position:relative; overflow:hidden;">
+    <h2 style="font-size:24px; font-weight:bold; margin-bottom:10px;">Mining crypto is hard.</h2>
+    <h3 style="font-size:20px; font-weight:bold; margin-bottom:10px;">Investing in crypto is risky.</h3>
+    <p style="font-size:18px;">Too many of us are left out of the cryptocurrency revolution...</p>
+
+    <!-- Wavy Bottom Effect (Full Width & Responsive) -->
+    <svg style="position:absolute; bottom:0; left:0; width:100%; height:100px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#6D3B8C" fill-opacity="1" d="M0,128L60,138.7C120,149,240,171,360,176C480,181,600,171,720,154.7C840,139,960,117,1080,122.7C1200,128,1320,160,1380,176L1440,192V320H0Z"></path>
+        <path fill="white" fill-opacity="1" d="M0,256L80,245.3C160,235,212,213,480,197.3C640,181,800,171,960,176C1120,181,1280,203,1360,213.3L1440,224V320H0Z"></path>
+    </svg>
+</section>
+
+
+<script>
+    function playVideo() {
+        document.getElementById("video-thumbnail").style.display = "none";
+        let iframe = document.getElementById("video-frame");
+        iframe.src = "https://www.youtube.com/embed/video_id?autoplay=1";
+        iframe.style.display = "block";
+    }
+</script>
+
+<script>
+    function playVideo() {
+        document.getElementById('video-thumbnail').style.display = 'none';
+        document.getElementById('video-frame').style.display = 'block';
+        document.getElementById('video-frame').src = "https://www.youtube.com/embed/video_id?autoplay=1";
+    }
+</script>
+
+
+<!-- Pi Crypto Mining Section -->
+<section class="pi-mining-section">
+    <div class="container">
+        
+
+        <!-- Right Image -->
+        <div class="image-content">
+            <img src="C:\Users\atesh\Downloads\pi.png" alt="Pi Coin">
+        </div>
+        <!-- Left Text Content -->
+        <div class="text-content1">
+            <h2>Pi makes crypto mining easy.</h2>
+            <p>Breakthrough tech allows you to mine Pi on your phone without draining your battery.</p>
+            <a href="#" class="btn">Learn The Tech Behind Pi →</a>
+        </div>
+    </div>
+</section>
+
+<!-- CSS for Styling -->
+<style>
+    .pi-mining-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 20px;
+        background-color: white;
+    }
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    .text-content1 {
+        flex: 1;
+        max-width: 50%;
+        padding: 20px;
+    }
+    .text-content1 h2 {
+    color: #6D3B8C !important; /* Force Purple */
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.text-content1 p {
+    font-size: 18px;
+    color: #000000 !important; /* Force Black */
+    margin: 10px 0;
+}
+
+    .btn {
+        display: inline-block;
+        background-color: #6D3B8C;
+        color: white;
+        padding: 12px 20px;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+
+    .image-content {
+        flex: 1;
+        max-width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .image-content img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .text-content, .image-content {
+            max-width: 100%;
+        }
+    }
+</style>
+
+
+
+
+  
+<section class="features">
+    <div class="feature">
+        <img src="C:\Users\atesh\Downloads\decen.png" alt="Decentralized">
+        <h3>Decentralized</h3>
+        <p>Secure, Immutable, non-counterfeitable and interoperable digital money.</p>
+    </div>
+    <div class="feature">
+        <img src="C:\Users\atesh\Downloads\hand.png" alt="Mobile First">
+        <h3>Mobile First</h3>
+        <p>Works on your mobile phone and does not drain your battery.</p>
+    </div>
+    <div class="feature">
+        <img src="C:\Users\atesh\Downloads\globe.png" alt="User & Planet-Friendly">
+        <h3>User & Planet-Friendly</h3>
+        <p>Easy to use, secure at scale, without the massive electrical waste.</p>
+    </div>
+</section>
+
+<!-- CSS Styles -->
+<style>
+    /* Importing Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    .features {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 50px 20px;
+        text-align: center;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .feature {
+        background: white;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        border-radius: 10px;
+        width: 300px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .feature:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature img {
+        width: 60px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .feature h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .feature p {
+        font-size: 16px;
+        color: #666;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .features {
+            flex-direction: column;
+            gap: 30px;
+        }
+    }
+</style>
+
+
+    <style>
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px; /* Adds spacing between the cards */
+        }
+        
+        .feature {
+            width: 300px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-align: center;
+        }
+    
+        /* Hover effect for better UI */
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    
+
+
+   
+    
+
+<!-- Download Section -->
+
+<section class="download">
+    <div class="download-content">
+        <img src="C:\Users\atesh\Downloads\app.png" alt="App Preview" class="app-image">
+        <div class="text-content">
+            <h2>Download the mobile app to start mining today! Join now.</h2>
+            <p>Keep your money! Mining Pi is free. All you need is an invitation from an existing trusted member on the network. If you have an invitation, you can download the mobile app below.</p>
+            <div class="download-buttons">
+                <a href="#" class="download-btn"><img src="C:\Users\atesh\Downloads\google.png" alt="Google Play"></a>
+                <a href="#" class="download-btn"><img src="C:\Users\atesh\Downloads\apple.png" alt="App Store"></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CSS Styles -->
+<style>
+    /* Importing Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f8f8f8;
+    }
+
+    /* Features Section */
+    .features {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .feature {
+        background: white;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        border-radius: 10px;
+        width: 300px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .feature:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature img {
+        width: 60px;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .feature h3 {
+        font-size: 20px;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    .feature p {
+        font-size: 16px;
+        color: #666;
+    }
+
+    /* Download Section */
+    .download {
+        background: linear-gradient(90deg, #62277A, #3E3A92);
+        color: white;
+        padding: 80px 5%;
+    }
+
+    .download-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .app-image {
+        width: 40%;
+        max-width: 400px;
+    }
+
+    .text-content {
+        width: 50%;
+
+    }
+    .text-content h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #FFD700 !important; /* Yellow Color */
+    margin-bottom: 15px;
+}
+
+.text-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: white !important; /* White Color */
+}
+
+
+    .download-buttons {
+        display: flex;
+        gap: 15px;
+    }
+
+    .download-btn img {
+        width: 150px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .features {
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .download-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .app-image {
+            width: 70%;
+            margin-bottom: 20px;
+        }
+
+        .text-content {
+            width: 100%;
+        }
+    }
+</style>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Pi Whitepaper</a>
+            <a href="#">Support & FAQ</a>
+            <a href="#">Community Code of Conduct</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Developer Terms of Use</a>
+            <a href="#">Pi Trademark</a>
+            <a href="#">Safety Center</a>
+        </div>
+        <p>© 2024 SocialChain Inc. | All rights reserved.</p>
+    </footer>
+</body>
+</html>

