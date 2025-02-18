@@ -8,7 +8,7 @@
             "type": "msedge",
             "request": "launch",
             "name": "Open frontPage.html",
-            "file": "c:\\Users\\atesh\\Desktop\\pi\\frontPage.html"
+            "file": "c:\\Users\\atesh\\Desktop\\pi\\index.html"
         }
     ]
 }
